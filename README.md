@@ -19,7 +19,7 @@
 **3. 會員購物流程及訂單查詢:**
 在此會介紹會員登入後頁面、購物流程及訂單查詢
 (圖六)會員首頁，只有在會員登入後才會出現加入購物車選項，跟非會員頁面的navbarcolor也有所不同
-![image](https://github.com/stutdesk/shopping-website/blob/master/images/homepage(login))<br>
+![image](https://github.com/stutdesk/shopping-website/blob/master/images/homepage(login).png)<br>
 (圖七)購物流程1:當選擇數量並按下加入購物車會，會將數量及商品傳至shoppingcar頁面
 ![image](https://github.com/stutdesk/shopping-website/blob/master/images/shoppingcar.png)<br>
 (圖八)購物流程2:可以在此頁面刪除或選擇要結帳物品(若沒選就按下comfirm會出現警訊)
@@ -41,3 +41,7 @@
 ![image](https://github.com/stutdesk/shopping-website/blob/master/images/Edit.png)<br>
 (圖十五)會員管理
 ![image](https://github.com/stutdesk/shopping-website/blob/master/images/Member.png)<br>
+<br>
+## 心得
+雖然這是一個功能及程式碼都簡單的網頁，但是也花了我一小段時間來構思及實現，從無到有，從不會到會，從沒想過到實現
+，一步一步地構築真的感到非常的有成就感，這只是第一個小專題，接下來還會有其他更棒的專題，共勉之
