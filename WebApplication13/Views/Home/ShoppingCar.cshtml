@@ -1,0 +1,81 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WebApplication13.Models.tOrderDetail>
+
+@{
+    ViewBag.Title = "ShoppingCar";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<h2>ShoppingCar</h2>
+<form action="@Url.Action("ShoppingCar")" method="post">
+    <table class="table table-hover">
+        <tr style="background-color:antiquewhite">
+            <th>
+                <label>選取</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fIsApproved)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <input type="checkbox" name="fId" value="@item.fId" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fUserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fIsApproved)
+                </td>
+                <td>
+                    @Html.ActionLink("Cancel", "DeleteCar", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('Delete?')" })
+                </td>
+
+            </tr>
+        }
+    </table>
+    <hr />
+    <div style="text-align:right">
+        <input type="submit" value="Confirm" class="btn btn-success" style="text-align:right" />
+    </div>
+    @if (TempData["error"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["error"]));
+        alert(message);
+        </script>
+    }
+    @Html.PagedListPager(Model, page => Url.Action("ShoppingCar", new { page }))
+</form>

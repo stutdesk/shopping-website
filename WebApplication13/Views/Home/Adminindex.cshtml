@@ -1,0 +1,75 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList< WebApplication13.Models.tProduct >
+
+@{
+    Layout = null;
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Adminindex</title>
+</head>
+<body>
+    <h2>Product</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().kind)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fImg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fselled)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kind)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPrice)
+                </td>
+                <td>
+                    <img src="~/images/@item.fImg" style="width:10%" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fselled)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { fId = item.fId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('delete?')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+@Html.PagedListPager(Model, page => Url.Action("Adminindex", new { page }))
+</html>

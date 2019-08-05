@@ -1,0 +1,56 @@
+﻿@*@model IEnumerable<WebApplication13.Models.tProduct>*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Product List <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" @*style="background-color:#f8f8f8"*@>                            
+                            <li><a href="@Url.Action("productkind")?kind=TV">TV</a></li>
+                            <li><a href="@Url.Action("productkind")?kind=Phone">Phone</a></li>
+                            <li><a href="@Url.Action("productkind")?kind=Game">Game</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Regis", "Regis", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                </ul>
+                <form action="@Url.Action("productsearch")" method="post">
+                    <input type="hidden" name="kind" id="kind" value="" />
+                    <input type="text" name="productname" id="productname" style="position: absolute;right: 30px;top: 12px;border-radius: 10px;padding-left: 10px;" placeholder="Product Search" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

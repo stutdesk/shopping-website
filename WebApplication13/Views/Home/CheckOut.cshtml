@@ -1,0 +1,94 @@
+﻿@model IEnumerable<WebApplication13.Models.tOrderDetail>
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<h2>CheckOut</h2>
+<table class="table">
+    <tr style="background-color:antiquewhite">
+        <th>
+            @Html.DisplayNameFor(model => model.fUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fQty)
+        </th>
+        <th>總額</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var price = item.fPrice * item.fQty;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fQty)
+            </td>
+            <td>
+                <label>@price</label>
+            </td>
+        </tr>
+    }
+</table>
+<hr />
+<div style="text-align:center;font-size:medium">
+    <p style="font-weight:bolder">--------------------總金額:@ViewBag.total--------------------</p>
+</div>
+<form action="@Url.Action("CheckOut")" method="post">
+    @{
+        var fId2 = (int[])ViewBag.fId;
+        foreach (var item in fId2)
+        {
+
+        <input type="hidden" id="fId" name="fId" value="@item" />
+        }
+        }
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2" for="fReceiver">收件人姓名</label>
+            <div class="col-md-10">
+                <input type="text" id="fReceiver" name="fReceiver" required class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="fAddress">收件人地址</label>
+            <div class="col-md-10">
+                <input type="text" id="fAddress" name="fAddress" required class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="fEmail">收件人信箱</label>
+            <div class="col-md-10">
+                <input type="email" id="fEmail" name="fEmail" required class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="CheckOut" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>

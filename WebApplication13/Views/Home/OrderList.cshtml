@@ -1,0 +1,77 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WebApplication13.Models.tOrderDetail>
+
+@{
+    ViewBag.Title = "OrderList";
+}
+
+<h2>OrderList</h2>
+<form action="@Url.Action("search")" method="post">
+    <select name="searchkind1" id="searchkind1" required style="height:26px;margin-right:5px;margin-bottom:10px">
+        <option></option>
+        <option value="fOrderGuid">訂單編號</option>
+        <option value="fPId">產品編號</option>
+        <option value="fName">品名</option>
+    </select>
+    <input type="text" id="keyword1" name="keyword1" required style="height:26px;width:280px;padding:1px 5px;margin-bottom:10px;margin-right:5px" placeholder="Keyword" />
+    <input type="submit" value="confirm" class="btn btn-default" style="height:28px;text-align:center;padding:1px 5px;min-height:28px;min-width:30px;margin-bottom:5px" />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fOrderGuid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fIsApproved)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fOrderGuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fIsApproved)
+            </td>
+            <td>
+                <a href="@Url.Action("OrderDetail")?fGuid=@item.fOrderGuid" class="btn btn-info">OrderDetail</a>
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("OrderList", new { page , keyword = ViewBag.keyword, searchkind = ViewBag.searchkind }))

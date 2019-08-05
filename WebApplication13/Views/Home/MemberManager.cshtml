@@ -1,0 +1,48 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WebApplication13.Models.tMember>
+
+@{
+    ViewBag.Title = "MemberManager";
+    Layout = "~/Views/Shared/_LayOutAdmin.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<h2>MemberManager</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fEmail)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fEmail)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "MemberDelete", new { fId = item.fId }, new { @class = "btn btn-danger", onclick = "return confirm('delete?')" })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("MemberManager", new { page }))

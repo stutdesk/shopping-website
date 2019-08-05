@@ -1,0 +1,44 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<WebApplication13.Models.tProduct>
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<h2>Product List</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4">
+            <div class="thumbnail" style="margin-bottom:20px" >
+                <img src="~/images/@item.fImg" style="width:50%"/>
+                <div class="caption">
+                    <h2>@item.fName</h2>
+                    <p>Price:@item.fPrice</p>
+                    <form action="@Url.Action("AddCar")" method="post">
+                        @if (Session["Member"] == null)
+                        {
+                            <p></p>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="form-inline">
+                                        <input type="hidden" name="fPId" value="@item.fPId" />
+
+                                        <label for="fQty" class="control-label">數量:</label>
+                                        <input type="number" min="1" max="99" class="input-sm " id="fQty" name="fQty" value="1"  />
+                                        <input type="submit" value="加入購物車" class="btn btn-primary" style="float:right"/>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model,page=>Url.Action("index",new { page}))
+
