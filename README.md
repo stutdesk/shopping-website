@@ -5,4 +5,8 @@
 
 ## 作品介紹
 **1. 首頁及Layout部分:**<br>
-首頁部分為商品的陳列，而每件商品都有加到購物車及點擊查看詳細資訊的按鈕。
+首頁為商品陳列，在未登入會員前只能瀏覽商品而無加入購物車選項，登入會員後首頁如圖二，右上為商品搜尋(無論到哪個頁面都會一直掛在最上側)如圖三。
+![image](https://github.com/stutdesk/shopping-website/blob/master/images/homepage(withoutlogin).png)<br>
+(圖二)
+  ![image](https://github.com/stutdesk/shopping-website/blob/master/images/homepage(login).png)<br>
+   (圖三) ![image](https://github.com/stutdesk/shopping-website/blob/master/images/productsearch.png)<br>
